@@ -1,0 +1,114 @@
+
+завантаж ruby installer
+
+командний рядок
+gem install sass
+gem install compass
+
+cd папка з проектом
+	
+	compass init - додали sass в проект
+	compass watch - компіляція при зміні будь-якого файла в проекті
+
+====================
+		змінні
+
+$varInt: 12px;
+$varStr: red;
+
+body{
+	color: $varStr;
+	h1{
+			color: blue;
+			font-size: ($varInt + 2)/2;
+	}
+}
+
+====================
+		mixin
+
+@mixin	еквівалентно .sass	=
+@include	еквівалентно .sass	+
+
+@mixin br($b:3px){ з дефолтним значенням
+	border-radius: $b;
+	-webkit-border-radius: $b;
+}
+-----
+div {
+	@include br(5px 4px 2px 3px);
+}
+
+-----------
+
+=links($link, $visit, $hover, $active){
+	a{ // "& - батьківський селектор"
+		color: $link;
+		&:visited:{
+			color: $visit; 
+		}
+		&:hover:{
+			color: $hover; 
+		}
+		&:active:{
+			color: $active; 
+		}
+	}
+}
+-----
++links(red, blue, green, yellow);
+
+======================
+		import
+
+@import "template"; // підключення _template.scss
+
+======================
+	еонструкція #{}
+
+	  &:before { content: "Страница #{ $page }!"; 
+
+======================
+		цикл @for
+
+$to: 10;
+$k: 1.43;
+
+@for $i from 1 to/through(</<=) $to {
+	.col-#{$i}{
+		width: $i*$k + px;
+	}
+}
+-----sass-----
+$to: 10
+$k: 1.43
+
+@for $i from 1 through $to
+	.col-#{$i}
+		width: $i*$k + px
+
+======================
+		цикл @each
+
+@each $j in vk, tw, fb{
+	.icon-#{$j}{
+		color: blue;
+		data-icon-name: $j;
+	}
+}
+
+======================
+		умова @if
+
+	@mixin circle($radius){
+		@if $radius>2{											> < >= <= == !=
+			background: red;
+		}
+		@else $radius<=2{
+			background: white;
+		}
+	}
+
+	body{
+		@include circle(3);
+	}

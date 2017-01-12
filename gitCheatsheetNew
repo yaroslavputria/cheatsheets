@@ -1,0 +1,158 @@
+
+Установка имени и электронной почты
+	git config --global user.name "Your Name"
+	git config --global user.email "your_email@whatever.com"
+
+Параметры установки окончаний строк
+	git config --global core.autocrlf true
+	git config --global core.safecrlf true
+
+
+	git init
+	git add hello.html - індексація змін
+	git commit -m "First Commit"
+
+	git status
+
+	git checkout "назва зміненого файлу" - для відміни неіндексованих змін
+
+История
+	git log
+
+Однострочная история
+	git log --pretty=oneline
+
+Разные выводы истории
+	git log --pretty=oneline --max-count=2
+	git log --pretty=oneline --since='5 minutes ago'
+	git log --pretty=oneline --until='5 minutes ago'
+	git log --pretty=oneline --author=<your name>
+	git log --pretty=oneline --all
+
+	git log --all --pretty=format:"%h %cd %s (%an)" --since='7 days ago' - с форматом вывода
+
+	git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+			--pretty="..." — определяет формат вывода.
+			%h — укороченный хэш коммита
+			%d — дополнения коммита («головы» веток или теги)
+			%ad — дата коммита
+			%s — комментарий
+			%an — имя автора
+			--graph — отображает дерево коммитов в виде ASCII-графика
+			--date=short — сохраняет формат даты коротким и симпатичным
+
+Алиасы
+
+	git config --global alias.co checkout
+	git config --global alias.ci commit
+	git config --global alias.st status
+	git config --global alias.br branch
+	git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+	git config --global alias.type 'cat-file -t'
+	git config --global alias.dump 'cat-file -p'
+
+=== або можна самостійно дописати відповідні рядки в .gitconfig в $HOME каталозі:
+		[alias]
+		  co = checkout
+		  ci = commit
+		  st = status
+		  br = branch
+		  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+		  type = cat-file -t
+		  dump = cat-file -p
+
+Получение старых версий
+
+	git log (або якщо доданий відповвідний аліас - git hist) - бачимо хеші відповідних комітів
+
+	git checkout "хеш" - повертаємось до версії репозиторія відповідного коміта
+
+	git checkout master - поврнутись до останньої версії у гілці master
+
+Создание тегов версий
+
+	git tag v1 - називаємо поточну версію репозиторія v1
+
+	git checkout v1^ - переключаємось на попередню версію
+
+	git tag - перегляд тегів
+
+	Просмотр Тегов в логах
+		git hist master --all
+
+Отмена локальных изменений (до индексации)
+
+	git checkout "файл"
+
+Отмена проиндексированных изменений (перед коммитом)
+
+	git reset HEAD "файл"
+	git checkout "файл"
+
+Отмена коммитов
+	
+	git revert HEAD - додає комміт REVERT(відміна)
+	git revert HEAD --no-edit
+
+Удаление коммиттов из ветки
+
+	При получении ссылки на коммит (т.е. хэш, ветка или имя тега), команда reset…
+		Перепишет текущую ветку, чтобы она указывала на нужный коммит
+		Опционально сбросит буферную зону для соответствия с указанным коммитом
+		Опционально сбросит рабочий каталог для соответствия с указанным коммитом
+
+	Сброс коммитов к предшествующим коммиту
+
+		git reset --hard "тег або хеш"
+
+		git hist --all - комміти всеодно видні(якщо їм був доданий тег)
+
+Удалить последний коммит с изменениями (--soft - без)
+
+	git reset --hard HEAD^
+
+Удаление тега
+
+	git tag -d "тег"
+
+Внесение изменений в коммиты
+
+	git add .
+	git commit --amend -m "виправлений комміт"
+
+Перемещение файлов
+	
+	git mv "файл" "папка" - готово для комміта
+
+Создание ветки
+	
+	git checkout -b "назва нової гілки" "назва гілки, від якої розгалуджується нова"- шорткат команд 
+																				git branch "назва нової гілки" "назва гілки, від якої розгалуджується нова"
+																				git checkout "назва нової гілки
+
+Навигация по веткам
+
+	git checkout "назва гілки"	
+
+	git hist --all
+	git checkout master
+
+Изменения в ветке master
+
+Просмотр отличающихся веток
+
+	git log --graph --all - візуалізація гілок
+
+Слияние
+
+	git checkout "назва гілки"
+	git merge master(або назва іншої гілки)
+
+Разрешение конфликтов (когда оные возникают в результате мерджа):
+	
+	git mergetool
+
+	
+	$ git merge --no-ff myfeature (--no-ff вынуждает Git всегда создавать новый объект
+	коммита при слиянии, даже если слияние может быть осуществлено алгоритмом fast-forward)
+

@@ -1,0 +1,98 @@
+централізовані системи контроля версій - сервер-клієнт
+розподілені системи - сервер-клієнт, клієнт-клієнт 
+
+Робочий процес з трьох кроків:
+1 - stage files ii->ііі
+2 - commit iiі->і
+3
+і. git directory
+іі. working directory
+ііі. staging area (підготовлені файли)
+
+
+git config
+
+git config --list
+
+git help 'команда'
+
+-----------------
+
+git init - створення гіта через Git Bash, перейшовши у відповідну папку
+створюється скрита папка .git
+
+C:\Users\yaros\OneDrive\FILES\git in progress\file status lifecycle.jpg
+
+git status - в якому статусі знаходяться файли у репозиторії
+    untracked files - недодані файли для відстежування
+    unmodified files
+    modified files
+
+
+git add . - додати всі файли
+
+git commit -m "коментар" - коміт для проіндексованих(доданих) файлів - "зліпок" стану закомічених файлів
+
+------------------
+
+створення репозиторія на гітхабі
+
+визначення віддаленого репозиторію(лінк отримуємо після створення на гітхабі)
+git remote add origin https://github.com/yaroslavputria/TMPgit.git
+
+git push -u origin master - безпосередньо заливання на віддалений сервер
+
+клонування репозиторіїв
+    - https
+git clone https://github.com/jquery/jquery.git
+    - ssh
+    - subversion
+
+--------------------
+
+//мерж гілок
+
+git branch - дізнатись в якій гілці знаходимся
+
+git branch new_branch - створення нової гілки
+
+git checkout new_branch - переключення на гілку
+
+---
+git log --graph --all --decorate  - дерево комітів
+git log --graph --all --decorate --oneline - дерево комітів в один рядок без зайвої інформації
+---
+
+git merge new_branch - злиття гілок з мастером - позначаються конфлікти у зміненому файлі
+    - заново робимо коміт без модифікаторів(git commit)
+    - видаляємо з файла текст про конфлікти, зберігаємо його
+    - робимо знову коміт без модифікаторів(git commit)
+    - пушимо на віддалений сервер (git push -u origin master)
+
+
+========================================
+
+$ rhc ssh yaroslavputria --ssh "C:\Progra~1\Git\usr\bin\ssh.exe"
+
+git pull origin master
+
+git diff HEAD відмінності
+
+git diff --staged
+
+$ git reset octofamily/octodog.txt - видалення octodog.txt в octofamily
+
+git branch clean_up - create branch
+
+git checkout clean_up - switch branch
+
+git rm '*.txt' - removing
+
+git checkout master
+git merge clean_up - об'єднали до гілки
+
+git branch -d clean_up - виділення гілки
+
+
+
+
