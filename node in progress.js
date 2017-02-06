@@ -1100,7 +1100,7 @@ function sendFile(file, res){
 
 </script>
 </body>
-</html>
+</html>/
 
 //server.js
 

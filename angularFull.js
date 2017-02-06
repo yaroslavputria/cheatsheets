@@ -20,10 +20,10 @@ ng-bind
 
 ng-controller - для фінкцій-контролерів
 	<script>
-	var MyFunctionCtrl = function($scope){//можуть приймати різні значення(в даному випадку $scope - аля this)
-		$scope.name = "world";
-		alert("Hello, world!");
-	}
+		var MyFunctionCtrl = function($scope){//можуть приймати різні значення(в даному випадку $scope - аля this)
+			$scope.name = "world";
+			alert("Hello, world!");
+		}
 	<script>
 	
 	<div ng-controller = "MyFunctionCtrl">
@@ -41,7 +41,7 @@ angular.module() - створення модуля (повертає обєкт 
 	параметри:
 		1. назва(суфікс App)
 		2. масив назв модулів, від яких даний мадуль залежить
-		3. конфігураційні налаштуваннямадуля(не обовязковий)
+		3. конфігураційні налаштуваннямадуля(необовязковий)
 
 var myApp = angular.module('myApp', []);
 <html ng-app="myApp"> - асоціювання модуля
@@ -181,7 +181,7 @@ myApp.controller('myController', function ($scope) {
 ======================|директиви в AngularJS|======================
 
 - <div ng-bind>...<div>
-- <div class="ng-bind">...<div>
+- <div class="ng-bind">...<div>                                                     /'"><(){}'
 - <ng-form>...<ng-form> - самостійні теги
 
 Розглянемо деякі директиви:
@@ -206,7 +206,7 @@ myApp.controller('myController', function ($scope) {
 
 === ng-class
 ...
-<tr ng-repeat="phone in phones" ng-class="$odd ? 'odd' : 'even'">//додає елементу клас в циклі - парний/непарний
+<tr ng-repeat="phone in phones" ng-class="$odd ? 'odd' : 'even'"> {}//додає елементу клас в циклі - парний/непарний
 ...
 
 !обхід внутрішніх масивів
@@ -274,7 +274,7 @@ myApp.controller('myController', function ($scope) {
 		onload - визначає вираз, який рендериться при завантаженні файлу
 		autoscroll - визначає чи дозволяється прокрутка під час завантаження
 
-======================|Директива ng-switch|======================
+======================|Директива ng-switch|======================/{}(){}
 
 === ng-switch (як ng-include, але для невеликих частин html)
 
@@ -512,12 +512,12 @@ myApp.controller('QuestionController', function($scope) {
 	...
 	//в контроллері додамо параметр для фільтра
 	...
-	$scope.sortparam='rate';
+	$scope.sortparam='rate';													(){}/
 	...
 
 +++ limitTo - обмежує кількість елементів
 
-	<div ng-repeat="answer in question.answers | orderBy:sortparam | limitTo:2" class="answer">
+	<div ng-repeat="answer in question.answers | orderBy:sortparam | limitTo:2" class="answer">                   (){}/
 
 +++ filter - задає параметри і значення фільтрації
 
@@ -530,7 +530,7 @@ myApp.controller('QuestionController', function($scope) {
 		<h3>Ответы<h3>
 		<div class="answers">
 			<div ng-repeat="a in question.answers | filter:{author:member}" class="answer" >//якщо властивість author в обєкті a рівна member
-				<div class="vote">
+				<div class="vote">                                                  (){}/
 				    <a class="vote-up" ng-click="voteUp(a)"><a>
 				    <span class="rate">{{a.rate}}<span>
 				    <a class="vote-down" ng-click="voteDown(a)"><a>
@@ -670,7 +670,7 @@ questApp.directive("answerList", function () {
 <head>
 <body ng-controller="ctr">
 
-  <p class="old1 old2" red-color>Nothing here<p>
+  <p class="old1 old2"{} red-color>Nothing here<p>
 <script>
 	var myApp = angular.module('myApp', []);
 	myApp.controller("ctr", function($scope){
@@ -706,7 +706,7 @@ questApp.directive("answerList", function () {
 <head>
 <body ng-controller="ctr">
 
-  <p class="old1 old2" red-color>Nothing here<p>
+  <p class="old1 old2" {} red-color>Nothing here<p>
 <script>
 	var myApp = angular.module('myApp', []);
 	myApp.controller("ctr", function($scope){
@@ -732,7 +732,7 @@ questApp.directive("answerList", function () {
 	var data = scope[attrs["redColor"] ||attrs["source"]]; - для отримання даних в директиві
 
 == застосування до класів
-	<div class="red-color: дані для директиви"><div>
+	<div class="red-color: дані для директиви" {}><div>
 
 == застосування до коментарів
 	<!-- directive: red-color дані для директиви -->
@@ -1176,17 +1176,17 @@ questApp.controller('QuestionController',
 Конфігурація запиту:
  	
 	config - обєкт, я вкому визначені такі параметри:
-		data: дані, які посилаються на сервер. Якщо не встановити даний параметр, то надіслані дані, наприклад,
+		= data: дані, які посилаються на сервер. Якщо не встановити даний параметр, то надіслані дані, наприклад,
 			методом post, будуть автоматично серілізуватись в json
-		headers: обєкт, який представляє собою набір заголовків
-		method: HTTP-метод запиту
-		params: встановлює параметри рядка URL
-		timeout: встановлює число мілісекунд дії запиту
-		transformRequest: функція, яка опрацьовує дані запиту перед його здійсненням
-		transformResponse: функція, яка опрацьовує відповідь від сервера після здійснення запиту
-		url: встановлює URL, що запрошується
-		withCredentials: якщо параметр рівний true, то в запиті також надсилаються аутинтефікаційні кукі
-		xsrfHeaderNamexsrfCookieName: використовується для надсилання CSRF-токенів
+		= headers: обєкт, який представляє собою набір заголовків
+		= method: HTTP-метод запиту
+		= params: встановлює параметри рядка URL
+		= timeout: встановлює число мілісекунд дії запиту
+		= transformRequest: функція, яка опрацьовує дані запиту перед його здійсненням
+		= transformResponse: функція, яка опрацьовує відповідь від сервера після здійснення запиту
+		= url: встановлює URL, що запрошується
+		= withCredentials: якщо параметр рівний true, то в запиті також надсилаються аутинтефікаційні кукі
+		= xsrfHeaderNamexsrfCookieName: використовується для надсилання CSRF-токенів
 
 questApp.controller('QuestionController',
     function QuestionController($scope, $http){

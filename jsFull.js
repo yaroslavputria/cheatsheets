@@ -198,7 +198,7 @@ https://kangax.github.io/compat-table/es6/
   let [str, times] = arr; // деструктуризация
 
   alert( str.repeat(times) ); // hellohello, метод repeat
-<script>/
+<script>
 
 =====================|const let|======================
 
