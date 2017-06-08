@@ -410,7 +410,7 @@ https://kangax.github.io/compat-table/es6/
 
             Эта функция будет автоматически вызвана и получит в качестве аргументов строку, разбитую по вхождениям
             параметров ${…} и сами эти параметры.
-            
+
             //          |  s[0] | v[0] |s[1]| v[1]  |s[2]  |      v[2]      |s[3]
             let str = f`Sum of ${apples} + ${oranges} =\n ${apples + oranges}!`;
 
@@ -515,7 +515,7 @@ https://kangax.github.io/compat-table/es6/
 
     - Более короткий синтаксис объявления.
     - Наличие в методах специального внутреннего свойства [[HomeObject]] («домашний объект»),
-      ссылающегося на объект, которому метод принадлежит. Мы посмотрим его использование чуть дальше.
+      ссылающегося на объект, которому метод принадлежит.
 
             'use strict';
 
@@ -1877,7 +1877,7 @@ alert( number.toLocaleString() ); // 123 456 789
     valueOf() - array or object (created by constructor or literal declaration)
 
 arr.forEach(callback[, thisArg]) - method-cycle(doesnt return enything) to change one by one all elements of array
-arr.filter(callback[, thisArg]) - method-cycle(doesnt return enything) to delete one by one elements of array if function callback return true(function callback must return true/false)
+arr.filter(callback[, thisArg]) - method-cycle(return new arr) to delete one by one elements of array if function callback return true(function callback must return true/false)
 arr.map(callback[, thisArg]) - method-cycle, which return array of results function callback for every elements of arr
 arr.every(callback[, thisArg]) - method-cycle, which return true if function callback return true for all elements of arr
 arr.some(callback[, thisArg]) -  method-cycle, which return true if function callback return true for at least one of element of arr
