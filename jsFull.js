@@ -1461,6 +1461,86 @@ delete не повлияет на исходный объект, так как �
         apply – перехватывает вызовы target().
         construct – перехватывает вызовы new target().
 
+==============================================
+==============================================
+==============================================
+==============================================
+==============================================
+
+======================| Custom Elements |===============
+
+Custom element methods
+Custom elements have the following methods that govern how they behave:
+
+constructor() Called when the element is created or upgraded
+connectedCallback() Called when the element is inserted into a document, including into a shadow tree
+disconnectedCallback() Called when the element is removed from a document
+attributeChangedCallback(attributeName, oldValue, newValue, namespace) Called when an attribute is
+        changed, appended, removed, or replaced on the element. Only called for observed attributes.
+adoptedCallback(oldDocument, newDocument) Called when the element is adopted into a new document
+
+()
+
+class myCustomEl extends HTMLElement {
+    constructor() {
+        super();
+        //creare shadow root
+        const shadow = this.attachShadow({mode: 'open'});
+        //some standart element
+        const img = document.createElement('img');
+        img.src = this.getAttribute('data-src');
+        //add img to the shadow root
+        shadow.appendChild(img);
+        //event listener for img
+        img.addEventListener('click', () => {
+            window.location = this.getAttribute('data-url');
+        });
+        const a = document.createElement('a');
+        a.innerText = this.getAttribute('data-name');
+        a.href = this.getAttribute('data-url');
+        shadow.appendChild(a);
+    }
+}
+
+// Define the new element
+customElements.define('my-custom-el', myCustomEl);
+
+//in html
+<my-custom-el data-name="It's custom element"
+data-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/javascript.png"
+data-url="http://example.com/2"><my-custom-el>
+
+++++++++++++
+
+class HelloElement extends HTMLElement {
+  // Monitor the 'name' attribute for changes.
+  static get observedAttributes() {return ['name']; }
+
+  // Respond to attribute changes.
+  attributeChangedCallback(attr, oldValue, newValue) {
+    if (attr == 'name') {
+      this.textContent = `Hello, ${newValue}`;
+    }
+  }
+}
+
+// Define the new element
+customElements.define('hello-element', HelloElement);
+in html
+<hello-element name="Anita"></hello-element>
+<script>
+    const Anita = document.getElementsByName("Anita")[0];
+  Anita.setAttribute('name', 'Petya');
+</script>
+
+
+
+
+
+
+
+
+
 ======================||======================
 ======================||======================
 ======================||======================
