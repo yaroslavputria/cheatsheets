@@ -116,6 +116,16 @@
     - inline
     - inline-block
     - table-*
+    `<form style="display: table">
+      <div style="display: table-row">
+        <label style="display: table-cell">Имя:</label>
+        <input style="display: table-cell">
+      </div>
+      <div style="display: table-row">
+        <label style="display: table-cell">Фамилия:</label>
+        <input style="display: table-cell">
+      </div>
+    </form>`
     - list-item, run-in и flex
 
 === float
@@ -1527,26 +1537,116 @@ class HelloElement extends HTMLElement {
 // Define the new element
 customElements.define('hello-element', HelloElement);
 in html
-<hello-element name="Anita"></hello-element>
+<hello-element name="Anita"></hello-element>/
 <script>
     const Anita = document.getElementsByName("Anita")[0];
-  Anita.setAttribute('name', 'Petya');
-</script>
+    Anita.setAttribute('name', 'Petya');
+</script>/
+
+======================| <template></template> |/===============
+
+
+======================| shadow root |===============
+
+Shadow DOM provides encapsulation for DOM and CSS in a Web Component.
+
+The parts of Shadow DOM
+
+    Shadow DOM consists of these pieces:
+        - Element.attachShadow()
+        - Element.getDestinationInsertionPoints()
+        - Element.shadowRoot
+        - <template> element
+        - <slot> element
+        - Associated API interfaces: ShadowRoot, HTMLTemplateElement and HTMLSlotElement
+        - CSS selectors:
+            Pseudo-classes: :host, :host(), :host-context()
+            Pseudo-elements: ::slotted()
+            Combinator: >>> *
+
+var shadowroot = element.attachShadow(shadowRootInit); //element.shadowRoot === shadowroot
+
+shadowRootInit
+    A ShadowRootInit dictionary, having the following field:
+    mode: A string specifying the encapsulation mode for the shadow DOM tree. One of:
+        - open. Specifies open encapsulation mode.
+        - closed. Specifies closed encapsulation mode.
 
 
 
+======================| document.cookie |======================
 
+document.cookie = "userName=Vasya";
 
+- path=/mypath                                                                     /
+- domain=site.com
+- expires=Tue, 19 Jan 2038 03:14:07 GMT
+        // +1 день от текущего момента
+        var date = new Date;
+        date.setDate(date.getDate() + 1);
+        alert( date.toUTCString() );
+- secure
 
+- add cookie
+    var date = new Date(new Date().getTime() + 60 * 1000);
+    document.cookie = "name=value; path=/; expires=" + date.toUTCString();
 
+- delete cookie
+    var date = new Date(0);
+    document.cookie = "name=; path=/; expires=" + date.toUTCString();
 
+// возвращает cookie с именем name, если есть, если нет, то undefined
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+// устанавливает cookie с именем name и значением value
+// options - объект с свойствами cookie (expires, path, domain, secure)
+function setCookie(name, value, options) {
+  options = options || {};
+
+  var expires = options.expires;
+
+  if (typeof expires == "number" && expires) {
+    var d = new Date();
+    d.setTime(d.getTime() + expires * 1000);
+    expires = options.expires = d;
+  }
+  if (expires && expires.toUTCString) {
+    options.expires = expires.toUTCString();
+  }
+
+  value = encodeURIComponent(value);
+
+  var updatedCookie = name + "=" + value;
+
+  for (var propName in options) {
+    updatedCookie += "; " + propName;
+    var propValue = options[propName];
+    if (propValue !== true) {
+      updatedCookie += "=" + propValue;
+    }
+  }
+
+  document.cookie = updatedCookie;
+}
+
+// удаляет cookie с именем name
+function deleteCookie(name) {
+  setCookie(name, "", {
+    expires: -1
+  })
+}
 
 ======================||======================
 ======================||======================
 ======================||======================
 ======================||======================
 ======================||======================
-======================||======================
+
 ======================|Basic js|======================
 //http://slides.com/contact/basicjs#/
 
