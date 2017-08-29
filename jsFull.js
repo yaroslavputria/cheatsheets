@@ -183,7 +183,57 @@
 
 - 
 
-============================================================
+=================|flexbox|=====================
+
+for parent container: 
+    display: flex;
+    display: inline-flex;
+
+properties:
+    === flex-direction - specifies the direction of the flexible items inside the flex container. The default value of flex-direction is row (left-to-right, top-to-bottom).
+        - row-reverse - If the writing-mode (direction) is left to right, the flex items will be laid out right to left
+        - column - If the writing system is horizontal, the flex items will be laid out vertically
+        - column-reverse - Same as column, but reversed
+    === justify-content - horizontally aligns the flexible container''s items when the items do not use all available space on the main-axis
+        - flex-start - Default value. Items are positioned at the beginning of the container
+        - flex-end - Items are positioned at the end of the container
+        - center - Items are positioned at the center of the container
+        - space-between - Items are positioned with space between the lines
+        - space-around - Items are positioned with space before, between, and after the lines
+    === align-items - vertically aligns the flexible container''s items when the items do not use all available space on the cross-axis.
+        - stretch - Default value. Items are stretched to fit the container
+        - flex-start - Items are positioned at the top of the container
+        - flex-end - Items are positioned at the bottom of the container
+        - center - Items are positioned at the center of the container (vertically)
+        - baseline - Items are positioned at the baseline of the container
+    === flex-wrap - specifies whether the flex items should wrap or not, if there is not enough room for them on one flex line.
+        - nowrap - Default value. The flexible items will not wrap
+        - wrap - The flexible items will wrap if necessary
+        - wrap-reverse - The flexible items will wrap, if necessary, in reverse order
+    === align-content - modifies the behavior of the flex-wrap property. It is similar to align-items, but instead of aligning flex items, it aligns flex lines.
+        - stretch - Default value. Lines stretch to take up the remaining space
+        - flex-start - Lines are packed toward the start of the flex container
+        - flex-end - Lines are packed toward the end of the flex container
+        - center - Lines are packed toward the center of the flex container
+        - space-between - Lines are evenly distributed in the flex container
+        - space-around - Lines are evenly distributed in the flex container, with half-size spaces on either end
+
+flex item properties: 
+    === order - specifies the order of a flexible item relative to the rest of the flexible items inside the same container
+        - значення зсуву індекса порядку
+    === margin
+        - Setting margin: auto; will absorb extra space. It can be used to push flex items into different positions.
+    === align-self - overrides the flex container''s align-items property for that item
+        - stretch - Default value. Items are stretched to fit the container
+        - flex-start - Items are positioned at the top of the container
+        - flex-end - Items are positioned at the bottom of the container
+        - center - Items are positioned at the center of the container (vertically)
+        - baseline - Items are positioned at the baseline of the container
+    === flex - specifies the length of the flex item, relative to the rest of the flex items inside the same container
+    
+
+
+
 ============================================================
 ============================================================
 ============================================================
